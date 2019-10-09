@@ -4,6 +4,8 @@ import junit.framework.TestCase;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.junit.Test;
+
 public class UserTest extends TestCase {
     /** Date of birth*/
     public static final int YEAR_OF_BIRTH = 2000;
@@ -42,7 +44,7 @@ public class UserTest extends TestCase {
         user.setLastName("Pavlenko");
         assertEquals("Marko Pavlenko", user.getFullName());
     }
-
+    @Test
     /** Get Age for Test case #1*/
      public void testGetAge1() { //день рождения прошёл но месяц идет
         Calendar calendar = Calendar.getInstance(); 
@@ -51,7 +53,7 @@ public class UserTest extends TestCase {
         user.setDateOfBirth(dateOfBirth);
         assertEquals(ETALON_AGE1, user.getAge());
     }
-
+     @Test
     /**Get Age for Test case #2*/
     public void testGetAge2() { //день рождения в тот же день
         Calendar calendar = Calendar.getInstance();
@@ -60,7 +62,7 @@ public class UserTest extends TestCase {
         user.setDateOfBirth(dateOfBirth);
         assertEquals(ETALON_AGE2, user.getAge());
     }
-
+@Test
     /**Get Age for Test case #3*/
     public void testGetAge3() { //день рождения в тот же день
         Calendar calendar = Calendar.getInstance();
@@ -69,7 +71,7 @@ public class UserTest extends TestCase {
         user.setDateOfBirth(dateOfBirth);
         assertEquals(ETALON_AGE3, user.getAge());
     }
-
+@Test
     /**Get Age for Test case #4*/
     public void testGetAge4() { //день рождения в тот же день
         Calendar calendar = Calendar.getInstance();
@@ -78,7 +80,7 @@ public class UserTest extends TestCase {
         user.setDateOfBirth(dateOfBirth);
         assertEquals(ETALON_AGE4, user.getAge());
     }
-
+@Test
     /**Get Age for Test case #5*/
     public void testGetAge5() { //день рождения в тот же день
         Calendar calendar = Calendar.getInstance();
