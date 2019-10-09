@@ -4,6 +4,7 @@ import junit.framework.TestCase;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class UserTest extends TestCase {
@@ -89,7 +90,7 @@ public class UserTest extends TestCase {
         user.setDateOfBirth(dateOfBirth);
         assertEquals(ETALON_AGE5, user.getAge());
     }
-
+@Before
     protected void setUp() throws Exception {
         super.setUp();
         user = new User();
