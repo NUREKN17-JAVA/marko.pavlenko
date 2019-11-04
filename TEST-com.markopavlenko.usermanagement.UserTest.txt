@@ -1,0 +1,31 @@
+Testsuite: com.markopavlenko.usermanagement.UserTest
+Tests run: 4, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 0,018 sec
+
+Testcase: testGetFullName took 0,002 sec
+Testcase: testAgeTheSameDay took 0,002 sec
+	FAILED
+expected:<28> but was:<18>
+junit.framework.AssertionFailedError: expected:<28> but was:<18>
+	at com.markopavlenko.usermanagement.UserTest.testAgeTheSameDay(UserTest.java:65)
+	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:36)
+	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.run(InternalAntRunner.java:460)
+	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:142)
+
+Testcase: testAgeBefore took 0,001 sec
+	FAILED
+expected:<27> but was:<18>
+junit.framework.AssertionFailedError: expected:<27> but was:<18>
+	at com.markopavlenko.usermanagement.UserTest.testAgeBefore(UserTest.java:56)
+	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:36)
+	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.run(InternalAntRunner.java:460)
+	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:142)
+
+Testcase: testAgeAfter took 0 sec
+	FAILED
+expected:<28> but was:<19>
+junit.framework.AssertionFailedError: expected:<28> but was:<19>
+	at com.markopavlenko.usermanagement.UserTest.testAgeAfter(UserTest.java:47)
+	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:36)
+	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.run(InternalAntRunner.java:460)
+	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:142)
+
