@@ -1,6 +1,5 @@
 package com.markopavlenko.usermanagement.db;
 
-
 import java.sql.*;
 import java.util.Collection;
 import java.util.LinkedList;
@@ -57,7 +56,7 @@ public class HsqldbUserDao implements UserDao {
         }
     }
 
-    @Override
+   
     public User find(long id) throws DatabaseException {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
