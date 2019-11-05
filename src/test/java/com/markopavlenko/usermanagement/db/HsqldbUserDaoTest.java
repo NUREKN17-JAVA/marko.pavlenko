@@ -1,7 +1,9 @@
 package com.markopavlenko.usermanagement.db;
 
+/*
 import static org.junit.Assert.*;
 import org.junit.Test;
+*/
 
 import com.markopavlenko.usermanagement.User;
 
@@ -12,8 +14,11 @@ import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.XmlDataSet;
 
+/*
 import java.io.FileInputStream;
 import java.sql.Connection;
+*/
+
 import java.util.Collection;
 import java.util.Date;
 
@@ -69,7 +74,7 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
         assertEquals(userExpected.getDateOfBirth(), user.getDateOfBirth());
     }
 
-  // The method of searching of all users in the DB
+  //The implementation of test method FindAll()
     public void testFindAll() throws DatabaseException {
         int expectedUsersNumber = 2;
         Collection<User> users = userDao.findAll();
@@ -77,6 +82,7 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
         assertEquals("Collection size.", expectedUsersNumber, users.size());
     }
 	
+ // The method of searching of all users in the DB
     public void testFind() {
         long id = TEST_ID;
         try {
