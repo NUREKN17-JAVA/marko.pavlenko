@@ -53,7 +53,7 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
 
     }
 
-    public void testCreateUser() throws DatabaseException {
+    public void testCreate() throws DatabaseException {
         User user = new User();
         user.setFirstName(FIRST_NAME);
         user.setLastName(LAST_NAME);
@@ -69,13 +69,14 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
         assertEquals(userExpected.getDateOfBirth(), user.getDateOfBirth());
     }
 
+  // The method of searching of all users in the DB
     public void testFindAll() throws DatabaseException {
         int expectedUsersNumber = 2;
         Collection<User> users = userDao.findAll();
         assertNotNull("Collection is null", users);
         assertEquals("Collection size.", expectedUsersNumber, users.size());
     }
-
+	
     public void testFind() {
         long id = TEST_ID;
         try {
@@ -90,7 +91,7 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
         }
 
     }
-
+     
     public void testDelete() {
         User testUser = createUser();
         int expectedBeforeSize = 2;
@@ -119,7 +120,8 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
             fail(e.getMessage());
         }
     }
-
+	
+    
     private User createUser() {
         User user = new User();
         user.setId(TEST_ID);
