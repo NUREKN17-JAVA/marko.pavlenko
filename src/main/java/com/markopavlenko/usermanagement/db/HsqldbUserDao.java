@@ -23,7 +23,8 @@ public class HsqldbUserDao implements UserDao {
     public HsqldbUserDao(ConnectionFactory connectionFactory){
         this.connectionFactory = connectionFactory;
     }
-
+    
+    @Override
     public User create(User user) throws DatabaseException {
         Connection connection = connectionFactory.createConnection();
         try {
