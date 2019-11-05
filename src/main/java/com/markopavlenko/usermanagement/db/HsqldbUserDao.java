@@ -18,7 +18,9 @@ public class HsqldbUserDao implements UserDao {
 
     public HsqldbUserDao() {
     }
-
+   
+    
+    
     public HsqldbUserDao(ConnectionFactory connectionFactory){
         this.connectionFactory = connectionFactory;
     }
@@ -32,6 +34,8 @@ public class HsqldbUserDao implements UserDao {
             statement.setString(2, user.getLastName());
             statement.setDate(3, new Date(user.getDateOfBirth().getTime()) );
             int n = statement.executeUpdate();
+            
+            
             if(n != 1){
                 throw new DatabaseException("Number of the date inserted rows: " + n);
             }
