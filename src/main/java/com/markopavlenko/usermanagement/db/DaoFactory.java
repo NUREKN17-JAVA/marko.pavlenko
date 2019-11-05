@@ -5,7 +5,8 @@ import java.util.Properties;
 
 public class DaoFactory {
 			
-	    private final Properties properties;
+	    private static final String USER_DAO = null;
+		private final Properties properties;
 
 	    private DaoFactory() {
 	        properties = new Properties();
@@ -17,8 +18,14 @@ public class DaoFactory {
 	    }
 	    
 	    public UserDao getUserDao() {
-	        UserDao result = null;
-	        return result;
+	        try {
+	            Class daoClass = Class.forName(properties.getProperty(USER_DAO));
+	            UserDao userDao = (UserDao) daoClass.newInstance();
+	            userDao.setConnectionFactory(getConnectionFactory());
+	            return userDao;
+	        } catch (Exception e) {
+	            throw new RuntimeException(e);
+	        }
 	    }
 	    
 	    private ConnectionFactory getConnectionFactory() {

@@ -18,8 +18,6 @@ public class HsqldbUserDao implements UserDao {
     public HsqldbUserDao() {
     }
    
-    
-    
     public HsqldbUserDao(ConnectionFactory connectionFactory){
         this.connectionFactory = connectionFactory;
     }
