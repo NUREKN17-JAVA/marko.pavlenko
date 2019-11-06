@@ -1,11 +1,8 @@
-Our Ant-Test file
-
 Testsuite: com.markopavlenko.usermanagement.UserTest
 Tests run: 4, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 0,018 sec
 
 Testcase: testGetFullName took 0,002 sec
 Testcase: testAgeTheSameDay took 0,002 sec
-
 	FAILED
 expected:<28> but was:<18>
 junit.framework.AssertionFailedError: expected:<28> but was:<18>
