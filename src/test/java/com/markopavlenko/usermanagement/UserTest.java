@@ -2,103 +2,140 @@ package com.markopavlenko.usermanagement;
 
 import junit.framework.TestCase;
 import java.util.Calendar;
-import java.util.Date;
-
-import org.junit.Before;
-import org.junit.Test;
 
 public class UserTest extends TestCase {
-    /** Date of birth*/
-    public static final int YEAR_OF_BIRTH = 2000;
-    public static final int CURRENT_YEAR = 2019;
 
-    /** Test case #1 День рождения в следующем месяце года*/
-    public static final int MONTH_OF_BIRTH1 = Calendar.FEBRUARY;
-    public static final int DATE_OF_BIRTH1 = 17;
-    public static final int ETALON_AGE1 = CURRENT_YEAR - YEAR_OF_BIRTH - 1;
+    private static final String FIRST_NAME = "Ivan";
+    private static final String LAST_NAME = "Ivanhoe";
+    private static final String FULL_NAME_ETALONE = "Ivanhoe, Ivan";
 
-    /** Test case #2 День рождения сегодня*/ // Change data
-    public static final int MONTH_OF_BIRTH2 = Calendar.OCTOBER;
-    public static final int DATE_OF_BIRTH2 = 17;
-    public static final int ETALON_AGE2 = CURRENT_YEAR - YEAR_OF_BIRTH ;
+    // test 22/11/18
+    // test birth date the day before
+    private static final int BIRTH_YEAR_BEFORE_DAY = 1999;
+    private static final int BIRTH_MONTH_BEFORE_DAY = Calendar.NOVEMBER;
+    private static final int BIRTH_DAY_BEFORE_DAY = 21;
+    private static final int ETALONE_AGE_BEFORE_DAY = 18;
 
-    /** Test case #3 День рождение в этом месяце (на несколько дней позже)*/
-    public static final int MONTH_OF_BIRTH3 = Calendar.OCTOBER;
-    public static final int DATE_OF_BIRTH3 = 27;
-    public static final int ETALON_AGE3 = CURRENT_YEAR - YEAR_OF_BIRTH -1 ;
+    // test birth date the month before
+    private static final int BIRTH_YEAR_BEFORE_MONTH = 1999;
+    private static final int BIRTH_MONTH_BEFORE_MONTH = Calendar.OCTOBER;
+    private static final int BIRTH_DAY_BEFORE_MONTH = 22;
+    private static final int ETALONE_AGE_BEFORE_MONTH = 18;
 
-    /** Test case #4 День рождения в этом месяце (на несколько дней раньше)*/
-    public static final int MONTH_OF_BIRTH4 = Calendar.OCTOBER;
-    public static final int DATE_OF_BIRTH4 = 7;
-    public static final int ETALON_AGE4 = CURRENT_YEAR - YEAR_OF_BIRTH;
+    // test birth date date eq
+    private static final int BIRTH_YEAR_EQ_DATE = 1999;
+    private static final int BIRTH_MONTH_EQ_DATE = Calendar.NOVEMBER;
+    private static final int BIRTH_DAY_EQ_DATE = 23;
+    private static final int ETALONE_AGE_EQ_DATE = 19;
 
-    /** Test case #5 День рождения на месяц раньше */
-    public static final int MONTH_OF_BIRTH5 = Calendar.SEPTEMBER;
-    public static final int DATE_OF_BIRTH5 = 17;
-    public static final int ETALON_AGE5 = CURRENT_YEAR - YEAR_OF_BIRTH;
+    // test birth date the day after
+    private static final int BIRTH_YEAR_AFTER_DAY = 1999;
+    private static final int BIRTH_MONTH_AFTER_DAY = Calendar.NOVEMBER;
+    private static final int BIRTH_DAY_AFTER_DAY = 23;
+    private static final int ETALONE_AGE_AFTER_DAY = 19;
+
+    // test birth date the month after
+    private static final int BIRTH_YEAR_AFTER_MONTH = 1999;
+    private static final int BIRTH_MONTH_AFTER_MONTH = Calendar.DECEMBER;
+    private static final int BIRTH_DAY_AFTER_MONTH = 22;
+    private static final int ETALONE_AGE_AFTER_MONTH = 19;
+
+//    private static final int YEAR_OF_BIRTH = 1999;
+//    private static final int MONTH_OF_BIRTH = 11;
+//    private static final int DAY_OF_BIRTH = 22;
+
+//    private static final int ETALONE_AGE_1 = 47;
 
     private User user;
-    private Date dateOfBirth;
+//    @Before
+    public void setUp() throws Exception {
+        user = new User();
+    }
 
+//    @After
+    public void tearDown() throws Exception {
+    }
+
+    //@test
     public void testGetFullName() {
-        user.setFirstName("Marko");
-        user.setLastName("Pavlenko");
-        assertEquals("Marko Pavlenko", user.getFullName());
-    }
-    @Test
-    /** Get Age for Test case #1*/
-     public void testGetAge1() { //день рождения прошёл но месяц идет
-        Calendar calendar = Calendar.getInstance(); 
-        calendar.set(YEAR_OF_BIRTH, MONTH_OF_BIRTH1, DATE_OF_BIRTH1);
-        dateOfBirth = calendar.getTime();
-        user.setDateOfBirth(dateOfBirth);
-        assertEquals(ETALON_AGE1, user.getAge());
-    }
-     @Test
-    /**Get Age for Test case #2*/
-    public void testGetAge2() { //день рождения в тот же день
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(YEAR_OF_BIRTH, MONTH_OF_BIRTH2, DATE_OF_BIRTH2);
-        dateOfBirth = calendar.getTime();
-        user.setDateOfBirth(dateOfBirth);
-        assertEquals(ETALON_AGE2, user.getAge());
-    }
-@Test
-    /**Get Age for Test case #3*/
-    public void testGetAge3() { //день рождения в тот же день
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(YEAR_OF_BIRTH, MONTH_OF_BIRTH3, DATE_OF_BIRTH3);
-        dateOfBirth = calendar.getTime();
-        user.setDateOfBirth(dateOfBirth);
-        assertEquals(ETALON_AGE3, user.getAge());
-    }
-@Test
-    /**Get Age for Test case #4*/
-    public void testGetAge4() { //день рождения в тот же день
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(YEAR_OF_BIRTH, MONTH_OF_BIRTH4, DATE_OF_BIRTH4);
-        dateOfBirth = calendar.getTime();
-        user.setDateOfBirth(dateOfBirth);
-        assertEquals(ETALON_AGE4, user.getAge());
-    }
-@Test
-    /**Get Age for Test case #5*/
-    public void testGetAge5() { //день рождения в тот же день
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(YEAR_OF_BIRTH, MONTH_OF_BIRTH5, DATE_OF_BIRTH5);
-        dateOfBirth = calendar.getTime();
-        user.setDateOfBirth(dateOfBirth);
-        assertEquals(ETALON_AGE5, user.getAge());
-    }
-@Before
-    protected void setUp() throws Exception {
-        super.setUp();
-        user = new User();
+        user.setFirstName(FIRST_NAME);
+        user.setLastName(LAST_NAME);
+        assertEquals(FULL_NAME_ETALONE, user.getFullName());
     }
 
-    protected void tearDown() throws Exception {
-        super.tearDown();
-        user = new User();
+    //@test
+    // before day
+    public void testGetAge1(){
+        Calendar calendar = Calendar.getInstance();
+
+        calendar.set(
+            BIRTH_YEAR_BEFORE_DAY,
+            BIRTH_MONTH_BEFORE_DAY,
+            BIRTH_DAY_BEFORE_DAY
+        );
+
+        user.setDateOfBirth(calendar.getTime());
+        assertEquals(ETALONE_AGE_BEFORE_DAY, user.getAge());
+    }
+
+    //@test
+    // before month
+    public void testGetAge2(){
+        Calendar calendar = Calendar.getInstance();
+
+        calendar.set(
+                BIRTH_YEAR_BEFORE_MONTH,
+                BIRTH_MONTH_BEFORE_MONTH,
+                BIRTH_DAY_BEFORE_MONTH
+        );
+
+        user.setDateOfBirth(calendar.getTime());
+        assertEquals(ETALONE_AGE_BEFORE_MONTH, user.getAge());
+    }
+
+    //@test
+    // eq date
+    public void testGetAge3(){
+        Calendar calendar = Calendar.getInstance();
+
+        calendar.set(
+                BIRTH_YEAR_EQ_DATE,
+                BIRTH_MONTH_EQ_DATE,
+                BIRTH_DAY_EQ_DATE
+        );
+
+        user.setDateOfBirth(calendar.getTime());
+        assertEquals(ETALONE_AGE_EQ_DATE, user.getAge());
+    }
+
+    //@test
+    // after day
+    public void testGetAge4(){
+        Calendar calendar = Calendar.getInstance();
+
+        calendar.set(
+                BIRTH_YEAR_AFTER_DAY,
+                BIRTH_MONTH_AFTER_DAY,
+                BIRTH_DAY_AFTER_DAY
+        );
+
+        user.setDateOfBirth(calendar.getTime());
+        assertEquals(ETALONE_AGE_AFTER_DAY, user.getAge());
+    }
+
+    //@test
+    // after month
+    public void testGetAge5(){
+        Calendar calendar = Calendar.getInstance();
+
+        calendar.set(
+                BIRTH_YEAR_AFTER_MONTH,
+                BIRTH_MONTH_AFTER_MONTH,
+                BIRTH_DAY_AFTER_MONTH
+        );
+
+        user.setDateOfBirth(calendar.getTime());
+        assertEquals(ETALONE_AGE_AFTER_MONTH, user.getAge());
     }
 
 }
