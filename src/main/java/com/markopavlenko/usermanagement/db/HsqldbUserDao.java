@@ -1,12 +1,12 @@
 package com.markopavlenko.usermanagement.db;
 
+import com.markopavlenko.usermanagement.User;
+
 import java.sql.*;
 import java.util.Collection;
 import java.util.LinkedList;
 
-import com.markopavlenko.usermanagement.User;
-
-public class HsqldbUserDao implements UserDao {
+class HsqldbUserDao implements UserDao {
     private ConnectionFactory connectionFactory;
 
     private static final String INSERT_QUERU = "INSERT into users (firstname, lastname, dateOfBirth) values (?, ?, ?)";
@@ -17,11 +17,11 @@ public class HsqldbUserDao implements UserDao {
 
     public HsqldbUserDao() {
     }
-   
+
     public HsqldbUserDao(ConnectionFactory connectionFactory){
         this.connectionFactory = connectionFactory;
     }
-    
+
     @Override
     public User create(User user) throws DatabaseException {
         Connection connection = connectionFactory.createConnection();
@@ -32,8 +32,6 @@ public class HsqldbUserDao implements UserDao {
             statement.setString(2, user.getLastName());
             statement.setDate(3, new Date(user.getDateOfBirth().getTime()) );
             int n = statement.executeUpdate();
-            
-            
             if(n != 1){
                 throw new DatabaseException("Number of the date inserted rows: " + n);
             }
@@ -75,7 +73,8 @@ public class HsqldbUserDao implements UserDao {
         }
     }
 
-    @Override
+    // Реализация метода findAll
+    
     public Collection<User> findAll() throws DatabaseException {
         Statement statement = null;
         ResultSet resultSet = null;

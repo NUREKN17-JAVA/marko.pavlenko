@@ -1,10 +1,5 @@
 package com.markopavlenko.usermanagement.db;
 
-/*
-import static org.junit.Assert.*;
-import org.junit.Test;
-*/
-
 import com.markopavlenko.usermanagement.User;
 
 import org.dbunit.DatabaseTestCase;
@@ -13,11 +8,6 @@ import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.XmlDataSet;
-
-/*
-import java.io.FileInputStream;
-import java.sql.Connection;
-*/
 
 import java.util.Collection;
 import java.util.Date;
@@ -30,8 +20,7 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
 
     private UserDao userDao;
     private ConnectionFactory connectionFactory;
-
-    @Override
+  
     protected IDatabaseConnection getConnection() throws Exception {
         connectionFactory = new ConnectionFactoryImpl();
         return new DatabaseConnection(connectionFactory.createConnection());
@@ -58,7 +47,7 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
 
     }
 
-    public void testCreate() throws DatabaseException {
+    public void testCreateUser() throws DatabaseException {
         User user = new User();
         user.setFirstName(FIRST_NAME);
         user.setLastName(LAST_NAME);
@@ -74,15 +63,13 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
         assertEquals(userExpected.getDateOfBirth(), user.getDateOfBirth());
     }
 
-  //The implementation of test method FindAll()
     public void testFindAll() throws DatabaseException {
         int expectedUsersNumber = 2;
         Collection<User> users = userDao.findAll();
         assertNotNull("Collection is null", users);
         assertEquals("Collection size.", expectedUsersNumber, users.size());
     }
-	
- // The method of searching of all users in the DB
+
     public void testFind() {
         long id = TEST_ID;
         try {
@@ -97,7 +84,7 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
         }
 
     }
-     
+
     public void testDelete() {
         User testUser = createUser();
         int expectedBeforeSize = 2;
@@ -126,8 +113,7 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
             fail(e.getMessage());
         }
     }
-	
-    
+
     private User createUser() {
         User user = new User();
         user.setId(TEST_ID);
