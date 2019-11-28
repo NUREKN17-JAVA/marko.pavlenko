@@ -6,10 +6,13 @@ import org.junit.Test;
 
 import java.awt.Component;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import junit.extensions.jfcunit.JFCTestCase;
 import junit.extensions.jfcunit.JFCTestHelper;
+import junit.extensions.jfcunit.eventdata.MouseEventData;
 import junit.extensions.jfcunit.finder.NamedComponentFinder;
 
 public class MainFrameTest extends JFCTestCase {
@@ -51,9 +54,17 @@ public class MainFrameTest extends JFCTestCase {
 		   find(JPanel.class, "detailsButton");
 	  }
 	  
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
-
+	  public void testAddUser() {
+		   JButton addButton = (JButton) find(JButton.class, "addButton");
+           getHelper().enterClickAndLeave(new MouseEventData(this, addButton));
+		  
+           find(JPanel.class,"addPanel");
+            
+	       find(JTextField.class, "firstNameField");
+	       find(JTextField.class, "lastNameField");
+	       find(JTextField.class, "dateOfBirthField");
+	       find(JButton.class, "deleteButton");
+	       find(JButton.class, "detailsButton");
+	    }
+	
 }
