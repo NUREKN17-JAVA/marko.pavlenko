@@ -4,8 +4,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.awt.Component;
+
 import junit.extensions.jfcunit.JFCTestCase;
 import junit.extensions.jfcunit.JFCTestHelper;
+import junit.extensions.jfcunit.finder.NamedComponentFinder;
 
 public class MainFrameTest extends JFCTestCase {
 
@@ -28,6 +31,15 @@ public class MainFrameTest extends JFCTestCase {
 		super.tearDown();
 	}
 
+	  private Component find(Class componentClass, String name) {
+	        NamedComponentFinder finder;
+	        finder = new NamedComponentFinder(componentClass, name);
+	        finder.setWait(0);
+	        Component component = finder.find(mainFrame, 0);
+	        assertNotNull("Could not find component '" + name + "'", component);
+	        return component;
+	    }
+	
 	@Test
 	public void test() {
 		fail("Not yet implemented");
