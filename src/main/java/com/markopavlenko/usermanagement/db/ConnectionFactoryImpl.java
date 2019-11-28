@@ -1,11 +1,10 @@
 package com.markopavlenko.usermanagement.db;
 
 import java.sql.Connection;
-
-import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 public class ConnectionFactoryImpl implements ConnectionFactory {
 
@@ -13,7 +12,12 @@ public class ConnectionFactoryImpl implements ConnectionFactory {
     private String URL = "jdbc:hsqldb:file:db/usermanagement";
     private String USER = "sa";
     private String PASSWORD = "";
-
+    
+    private static final String CONNECTION_DRIVER = "connection.driver";
+    private static final String CONNECTION_URL = "connection.url";
+    private static final String CONNECTION_USER = "connection.user";
+    private static final String CONNECTION_PASSWORD = "connection.password";
+    
     private String driver;
     private String url;
     private String user;
@@ -35,7 +39,15 @@ public class ConnectionFactoryImpl implements ConnectionFactory {
     }
 
 
-    @Override
+    public ConnectionFactoryImpl(Properties properties) {
+        driver = properties.getProperty(CONNECTION_DRIVER);
+        url = properties.getProperty(CONNECTION_URL);
+        user = properties.getProperty(CONNECTION_USER);
+        password = properties.getProperty(CONNECTION_PASSWORD);
+    }
+
+
+	@Override
     public Connection createConnection() throws DatabaseException {
 
 
