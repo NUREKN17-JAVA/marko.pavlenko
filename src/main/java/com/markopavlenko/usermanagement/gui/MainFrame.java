@@ -22,10 +22,10 @@ private static final long serialVersionUID = 2668816163406000368L;
 
     
     private void initialize() {
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(FRAME_WIDTH, FRAME_HEIGHT);
-        this.setTitle("Управление пользователями"); //$NON-NLS-1$
-        this.setContentPane(getContentPanel());
+    	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    	this.setSize(FRAME_WIDTH, FRAME_HEIGHT);
+    	this.setTitle("Управление пользователями");
+    	this.setContentPane(getContentPanel());
     }
 
     private JPanel getContentPanel() {
