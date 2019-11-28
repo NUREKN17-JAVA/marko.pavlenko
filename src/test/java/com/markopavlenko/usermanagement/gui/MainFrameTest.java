@@ -6,6 +6,8 @@ import org.junit.Test;
 
 import java.awt.Component;
 
+import javax.swing.JPanel;
+
 import junit.extensions.jfcunit.JFCTestCase;
 import junit.extensions.jfcunit.JFCTestHelper;
 import junit.extensions.jfcunit.finder.NamedComponentFinder;
@@ -40,6 +42,15 @@ public class MainFrameTest extends JFCTestCase {
 	        return component;
 	    }
 	
+	  public void testBrowseControls() {
+		   find(JPanel.class, "browsePanel");
+		   find(JPanel.class, "UserTable");
+		   find(JPanel.class, "addButton");
+		   find(JPanel.class, "editButton");
+		   find(JPanel.class, "deleteButton");
+		   find(JPanel.class, "detailsButton");
+	  }
+	  
 	@Test
 	public void test() {
 		fail("Not yet implemented");
