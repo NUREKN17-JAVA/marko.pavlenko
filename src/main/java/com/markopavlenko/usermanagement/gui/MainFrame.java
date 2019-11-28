@@ -53,4 +53,22 @@ private static final long serialVersionUID = 2668816163406000368L;
 
     }
 
+
+    public void showAddPanel() {
+        showPanel(getAddPanel());
+    }
+
+
+    private void showPanel(JPanel panel) {
+        getContentPane().add(panel, BorderLayout.CENTER);
+        panel.setVisible(true);
+        panel.repaint();
+    }
+
+
+	private AddPanel getAddPanel() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

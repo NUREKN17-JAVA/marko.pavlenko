@@ -123,7 +123,11 @@ public class BrowsePanel extends JPanel implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-       
+    	 String actionCommand = e.getActionCommand();
+         if ("add".equalsIgnoreCase(actionCommand)) { //$NON-NLS-1$
+             this.setVisible(false);
+             parent.showAddPanel();
+         }
 
     }
 
