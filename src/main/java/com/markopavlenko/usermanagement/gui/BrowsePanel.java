@@ -41,7 +41,7 @@ public class BrowsePanel extends JPanel implements ActionListener {
     }
 
     private void initialize() {
-        this.setName("browsePanel");  //$NON-NLS-1$
+        this.setName("browsePanel"); //$NON-NLS-1$
         this.setLayout(new BorderLayout());
         this.add(getTablePanel(), BorderLayout.CENTER);
         this.add(getButtonsPanel(), BorderLayout.SOUTH);
@@ -112,7 +112,7 @@ public class BrowsePanel extends JPanel implements ActionListener {
     private JTable getUserTable() {
         if (userTable == null) {
             userTable = new JTable();
-            userTable.setName("userTable");  //$NON-NLS-1$
+            userTable.setName("userTable"); //$NON-NLS-1$
         }
         return userTable;
     }
