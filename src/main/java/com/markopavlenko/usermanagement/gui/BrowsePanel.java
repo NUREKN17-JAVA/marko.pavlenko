@@ -3,14 +3,17 @@ package com.markopavlenko.usermanagement.gui;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
-
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import com.markopavlenko.usermanagement.util.Messages;
+import  com.markopavlenko.usermanagement.User;
+import  com.markopavlenko.usermanagement.db.DatabaseException;
+import  com.markopavlenko.usermanagement.util.Messages;
 
 public class BrowsePanel extends JPanel implements ActionListener {
 
@@ -177,3 +180,5 @@ public class BrowsePanel extends JPanel implements ActionListener {
         }
 
     }
+
+}

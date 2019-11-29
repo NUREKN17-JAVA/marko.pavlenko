@@ -1,5 +1,6 @@
 package com.markopavlenko.usermanagement.db;
 
+
 import com.mockobjects.dynamic.Mock;
 
 public class MockDaoFactory extends DaoFactory {

@@ -1,20 +1,29 @@
 package com.markopavlenko.usermanagement.gui;
 
+import com.markopavlenko.usermanagement.User;
+import com.markopavlenko.usermanagement.db.DatabaseException;
+import com.markopavlenko.usermanagement.util.Messages;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.markopavlenko.usermanagement.util.Messages;
-
 public class AddPanel extends JPanel implements ActionListener {
-
+    
+    /**
+	 * 
+	 */
 	private static final long serialVersionUID = 2371425014873030612L;
 	
 	protected MainFrame parent;
@@ -33,7 +42,7 @@ public class AddPanel extends JPanel implements ActionListener {
     }
 
     protected void initialize() {
-        this.setName("addPanel");  //$NON-NLS-1$
+        this.setName("addPanel"); //$NON-NLS-1$
         this.setLayout(new BorderLayout());
         this.add(getFieldPanel(), BorderLayout.NORTH);
         this.add(getButtonPanel(), BorderLayout.SOUTH); 
@@ -43,9 +52,9 @@ public class AddPanel extends JPanel implements ActionListener {
         if (fieldPanel == null) {
             fieldPanel = new JPanel();
             fieldPanel.setLayout(new GridLayout(3, 2));
-            addLabeledField(fieldPanel,Messages.getString("AddPanel.name"), getFirstNameField());  //$NON-NLS-1$
-            addLabeledField(fieldPanel,Messages.getString("AddPanel.first_name"), getLastNameField()); //$NON-NLS-1$
-            addLabeledField(fieldPanel,Messages.getString("AddPanel.date_of_birth"), getDateOfBirthField());  //$NON-NLS-1$
+            addLabeledField(fieldPanel, Messages.getString("AddPanel.first_name"), getFirstNameField()); //$NON-NLS-1$
+            addLabeledField(fieldPanel, Messages.getString("AddPanel.last_name"), getLastNameField()); //$NON-NLS-1$
+            addLabeledField(fieldPanel, Messages.getString("AddPanel.date_of_birth"), getDateOfBirthField()); //$NON-NLS-1$
         }
         return fieldPanel;
     }
@@ -62,9 +71,9 @@ public class AddPanel extends JPanel implements ActionListener {
     protected JButton getCancelButton() {
         if (cancelButton == null) {
             cancelButton = new JButton();
-            cancelButton.setText(Messages.getString("AddPanel.cancel"));  //$NON-NLS-1$
-            cancelButton.setName("cancelButton");  //$NON-NLS-1$
-            cancelButton.setActionCommand("cancel");  //$NON-NLS-1$
+            cancelButton.setText(Messages.getString("AddPanel.cancel")); //$NON-NLS-1$
+            cancelButton.setName("cancelButton"); //$NON-NLS-1$
+            cancelButton.setActionCommand("cancel"); //$NON-NLS-1$
             cancelButton.addActionListener(this);
         }
         return cancelButton;
@@ -73,18 +82,20 @@ public class AddPanel extends JPanel implements ActionListener {
     protected JButton getOkButton() {
         if (okButton == null) {
             okButton = new JButton();
-            okButton.setText(Messages.getString("AddPanel.Ok"));  //$NON-NLS-1$
-            okButton.setName("okButton");  //$NON-NLS-1$
-            okButton.setActionCommand("ok");  //$NON-NLS-1$
+            okButton.setText(Messages.getString("AddPanel.ok")); //$NON-NLS-1$
+            okButton.setName("okButton"); //$NON-NLS-1$
+            okButton.setActionCommand("ok"); //$NON-NLS-1$
             okButton.addActionListener(this);
         }
         return okButton;
-    }  
+    }
+
+   
 
     protected JTextField getDateOfBirthField() {
         if (dateOfBirthField == null) {
             dateOfBirthField = new JTextField();
-            dateOfBirthField.setName("dateOfBirthField");  //$NON-NLS-1$
+            dateOfBirthField.setName("dateOfBirthField"); //$NON-NLS-1$
         }
         return dateOfBirthField;
     }
@@ -112,11 +123,53 @@ public class AddPanel extends JPanel implements ActionListener {
         return firstNameField;
     }
 
-    
+    protected void doAction(ActionEvent e) throws ParseException {
+        if ("ok".equalsIgnoreCase(e.getActionCommand())) {
+            User user = new User();
+            user.setFirstName(getFirstNameField().getText());
+            user.setLastName(getLastNameField().getText());
+            DateFormat format = DateFormat.getDateInstance();
+            try {
+                Date date = format.parse(getDateOfBirthField().getText());
+                user.setDateOfBirth(date);
+            } catch (ParseException e1) {
+                getDateOfBirthField().setBackground(Color.RED);
+                return;
+            }
+            try {
+                if(parent.getDao() == null)
+                    throw new Exception("parent.getDao() == null");
+
+              
+            } catch (DatabaseException e1) {
+                JOptionPane.showMessageDialog(this, e1.getMessage(), "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            } catch (Exception ee){
+                System.out.println(ee.getMessage());
+            }
+        }
+    }
     
     public void actionPerformed(ActionEvent e) {
+        try {
+            doAction(e);
+        } catch (ParseException e1) {
+            return;
+        }
+        clearFields();
         this.setVisible(false);
         parent.showBrowsePanel();
         
     }
+
+    protected void clearFields() {
+        getFirstNameField().setText("");
+        getFirstNameField().setBackground(bgColor);
+        
+        getLastNameField().setText("");
+        getLastNameField().setBackground(bgColor);
+
+        getDateOfBirthField().setText("");
+        getDateOfBirthField().setBackground(bgColor);
+}
 }

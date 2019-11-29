@@ -3,6 +3,7 @@ package com.markopavlenko.usermanagement.gui;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
 import javax.swing.table.AbstractTableModel;
 
 import com.markopavlenko.usermanagement.User;
@@ -75,3 +76,4 @@ public class UserTableModel extends AbstractTableModel {
     }
 
 }
+
