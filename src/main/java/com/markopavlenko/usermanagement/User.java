@@ -12,7 +12,19 @@ public class User implements Serializable {
     private String lastName;
     private Date dateOfBirth;
 
-    public Long getId() {
+    public User(Long long1, String string, String string2, Date dATE) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public User(String string, String string2, Date dATE) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public User() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Long getId() {
         return id;
     }
 
