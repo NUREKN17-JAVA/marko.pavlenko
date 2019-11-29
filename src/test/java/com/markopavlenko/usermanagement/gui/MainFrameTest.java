@@ -5,15 +5,10 @@ import com.markopavlenko.usermanagement.db.DaoFactory;
 import com.markopavlenko.usermanagement.db.MockDaoFactory; 
 import com.markopavlenko.usermanagement.util.Messages;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-
 import java.awt.Component;
 import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
@@ -34,8 +29,6 @@ import junit.extensions.jfcunit.finder.DialogFinder;
 import junit.extensions.jfcunit.finder.NamedComponentFinder;
 
 import com.mockobjects.dynamic.Mock;
-
-
 
 public class MainFrameTest extends JFCTestCase {
 

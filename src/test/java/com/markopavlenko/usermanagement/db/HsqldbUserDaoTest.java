@@ -17,8 +17,8 @@ import java.util.Date;
 public class HsqldbUserDaoTest extends DatabaseTestCase {
 
     private static final long TEST_ID = 1001L;
-    private static final String FIRST_NAME = "Mark";
-    private static final String LAST_NAME = "Pavlenko";
+    private static final String FIRST_NAME = "Alex";
+    private static final String LAST_NAME = "Kornienko";
 
     private UserDao userDao;
     private ConnectionFactory connectionFactory;
@@ -43,10 +43,7 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
     }
 
     public void setUp() throws Exception {
-        connectionFactory = new ConnectionFactoryImpl("org.hsqldb.jdbcDriver",
-                "jdbc:hsqldb:file:db/usermanagement",
-                "sa",
-                "");
+        connectionFactory = new ConnectionFactoryImpl("org.hsqldb.jdbcDriver", "jdbc:hsqldb:file:db/usermanagement", "sa","");
         userDao = new HsqldbUserDao(connectionFactory);
         super.setUp();
     }
