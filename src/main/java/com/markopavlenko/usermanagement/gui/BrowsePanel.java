@@ -10,8 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-
-
+import com.markopavlenko.usermanagement.util.Messages;
 
 public class BrowsePanel extends JPanel implements ActionListener {
 
@@ -42,7 +41,7 @@ public class BrowsePanel extends JPanel implements ActionListener {
     }
 
     private void initialize() {
-        this.setName("browsePanel"); 
+        this.setName("browsePanel");  //$NON-NLS-1$
         this.setLayout(new BorderLayout());
         this.add(getTablePanel(), BorderLayout.CENTER);
         this.add(getButtonsPanel(), BorderLayout.SOUTH);
@@ -62,7 +61,7 @@ public class BrowsePanel extends JPanel implements ActionListener {
     private JButton getDetailsButton() {
         if (detailsButton == null) {
             detailsButton = new JButton();
-            detailsButton.setText("Детали"); //$NON-NLS-1$
+            detailsButton.setText(Messages.getString("BrowsePanel.details")); //$NON-NLS-1$
             detailsButton.setName("detailsButton"); //$NON-NLS-1$
             detailsButton.setActionCommand("details"); //$NON-NLS-1$
             detailsButton.addActionListener(this);
@@ -73,7 +72,7 @@ public class BrowsePanel extends JPanel implements ActionListener {
     private JButton getDeleteButton() {
         if (deleteButton == null) {
             deleteButton = new JButton();
-            deleteButton.setText("Удалить"); //$NON-NLS-1$
+            deleteButton.setText(Messages.getString("BrowsePanel.delete")); //$NON-NLS-1$
             deleteButton.setName("deleteButton"); //$NON-NLS-1$
             deleteButton.setActionCommand("delete"); //$NON-NLS-1$
             deleteButton.addActionListener(this);
@@ -84,7 +83,7 @@ public class BrowsePanel extends JPanel implements ActionListener {
     private JButton getEditButton() {
         if (editButton == null) {
             editButton = new JButton();
-            editButton.setText("Изменить"); //$NON-NLS-1$
+            editButton.setText(Messages.getString("BrowsePanel.edit")); //$NON-NLS-1$
             editButton.setName("editButton"); //$NON-NLS-1$
             editButton.setActionCommand("edit"); //$NON-NLS-1$
             editButton.addActionListener(this);
@@ -95,7 +94,7 @@ public class BrowsePanel extends JPanel implements ActionListener {
     private JButton getAddButton() {
         if (addButton == null) {
             addButton = new JButton();
-            addButton.setText("Добавить"); //$NON-NLS-1$
+            addButton.setText(Messages.getString("BrowsePanel.add")); //$NON-NLS-1$
             addButton.setName("addButton"); //$NON-NLS-1$
             addButton.setActionCommand("add"); //$NON-NLS-1$
             addButton.addActionListener(this);
@@ -113,7 +112,7 @@ public class BrowsePanel extends JPanel implements ActionListener {
     private JTable getUserTable() {
         if (userTable == null) {
             userTable = new JTable();
-            userTable.setName("userTable"); 
+            userTable.setName("userTable");  //$NON-NLS-1$
         }
         return userTable;
     }

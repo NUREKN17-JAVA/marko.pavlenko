@@ -5,6 +5,8 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import com.markopavlenko.usermanagement.util.Messages;
+
 public class MainFrame extends JFrame {
 	
 private static final long serialVersionUID = 2668816163406000368L;
@@ -24,7 +26,7 @@ private static final long serialVersionUID = 2668816163406000368L;
     private void initialize() {
     	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	this.setSize(FRAME_WIDTH, FRAME_HEIGHT);
-    	this.setTitle("Управление пользователями");
+    	this.setTitle(Messages.getString("MainFrame.user_management")); //$NON-NLS-1$
     	this.setContentPane(getContentPanel());
     }
 
