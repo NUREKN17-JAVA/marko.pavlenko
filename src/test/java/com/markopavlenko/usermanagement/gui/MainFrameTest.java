@@ -38,15 +38,24 @@ public class MainFrameTest extends JFCTestCase {
 
 	private MainFrame mainFrame;
 
-	@Before
-	protected void setUp() throws Exception {
-		super.setUp();
-		setHelper(new JFCTestHelper());
-		mainFrame = new MainFrame();
-		mainFrame.setVisible(true);
-			
-		
-	}
+	 protected void setUp() throws Exception {
+	        try {
+	            super.setUp();
+	            Properties properties = new Properties();
+	            properties.setProperty("dao.factory", MockDaoFactory.class.getName());
+	            DaoFactory.init(properties );
+	            mockUserDao = ((MockDaoFactory) DaoFactory.getInstance()).getMockUserDao();
+	            User expectedUser = new User(new Long(1001L), "George", "Bush", DATE);
+	            users = new ArrayList<User>();
+	            users.add(expectedUser);
+	            mockUserDao.expectAndReturn("findAll",users);
+	            setHelper(new JFCTestHelper());
+	            mainFrame = new MainFrame();
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	        mainFrame.setVisible(true);
+	    }
 
 	@After
 	protected void tearDown() throws Exception {
