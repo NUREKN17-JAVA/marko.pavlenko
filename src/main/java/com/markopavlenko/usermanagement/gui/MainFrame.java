@@ -55,7 +55,6 @@ private static final long serialVersionUID = 2668816163406000368L;
 
     }
 
-
     public void showAddPanel() {
         showPanel(getAddPanel());
     }
@@ -73,4 +72,9 @@ private static final long serialVersionUID = 2668816163406000368L;
         }
         return addPanel;
     }
+
+	public void showBrowsePanel() {
+		// TODO Auto-generated method stub
+		
+	}
 }
