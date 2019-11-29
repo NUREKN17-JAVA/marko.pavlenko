@@ -1,7 +1,7 @@
 package com.markopavlenko.usermanagement.db;
 
 import com.markopavlenko.usermanagement.User;
-
+import com.markopavlenko.usermanagement.db.*;
 import org.dbunit.DatabaseTestCase;
 
 import org.dbunit.database.DatabaseConnection;
@@ -9,20 +9,26 @@ import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.XmlDataSet;
 
+import java.io.FileInputStream;
+import java.sql.Connection;
 import java.util.Collection;
 import java.util.Date;
 
 public class HsqldbUserDaoTest extends DatabaseTestCase {
 
     private static final long TEST_ID = 1001L;
-    private static final String FIRST_NAME = "Marko";
+    private static final String FIRST_NAME = "Mark";
     private static final String LAST_NAME = "Pavlenko";
 
     private UserDao userDao;
     private ConnectionFactory connectionFactory;
-  
+
+    @Override
     protected IDatabaseConnection getConnection() throws Exception {
-        connectionFactory = new ConnectionFactoryImpl();
+        connectionFactory = new ConnectionFactoryImpl("org.hsqldb.jdbcDriver",
+                "jdbc:hsqldb:file:db/usermanagement",
+                "sa",
+                "");
         return new DatabaseConnection(connectionFactory.createConnection());
     }
 
@@ -37,9 +43,12 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
     }
 
     public void setUp() throws Exception {
-        super.setUp();
-        connectionFactory = new ConnectionFactoryImpl();
+        connectionFactory = new ConnectionFactoryImpl("org.hsqldb.jdbcDriver",
+                "jdbc:hsqldb:file:db/usermanagement",
+                "sa",
+                "");
         userDao = new HsqldbUserDao(connectionFactory);
+        super.setUp();
     }
 
     public void tearDown() throws Exception {
