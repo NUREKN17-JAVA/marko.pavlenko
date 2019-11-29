@@ -4,7 +4,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.markopavlenko.usermanagement.User;
+
 import java.awt.Component;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -60,16 +63,40 @@ public class MainFrameTest extends JFCTestCase {
 	    }
 	  
 	  public void testAddUser() {
-		   JButton addButton = (JButton) find(JButton.class, "addButton");
-           getHelper().enterClickAndLeave(new MouseEventData(this, addButton));
-		  
-           find(JPanel.class,"addPanel");
-            
-	       find(JTextField.class, "firstNameField");
-	       find(JTextField.class, "lastNameField");
-	       find(JTextField.class, "dateOfBirthField");
-	       find(JButton.class, "deleteButton");
-	       find(JButton.class, "detailsButton");
+	        try {
+	            String firstName = "George";
+	            String lastName = "Bush";
+
+	            User user = new User("George", "Bush", DATE);
+
+	            User expectedUser = new User(new Long(1), "George", "Bush", DATE);
+	            mockUserDao.expectAndReturn("create", user, expectedUser);
+	            System.out.println("1a" + expectedUser + user);
+
+	            
+	            ArrayList<User> users = new ArrayList<User>(this.users);
+	            users.add(expectedUser);
+	            mockUserDao.expectAndReturn("findAll", users);
+	            
+	            JTable table = (JTable) find(JTable.class, "userTable");
+	            assertEquals(1, table.getRowCount());
+
+	            JButton addButton = (JButton) find(JButton.class, "addButton");
+	            getHelper().enterClickAndLeave(new MouseEventData(this, addButton));
+
+	            find(JPanel.class, "addPanel");
+
+	            fillField(firstName, lastName, DATE);
+
+	            JButton okButton = (JButton) find(JButton.class, "okButton");
+	            getHelper().enterClickAndLeave(new MouseEventData(this, okButton));
+
+	            find(JPanel.class, "browsePanel");
+	            table = (JTable) find(JTable.class, "userTable");
+	            assertEquals(2, table.getRowCount());
+	        } catch (Exception e) {
+	            fail(e.toString());
+	        }
 	    }
 	
 }
