@@ -4,20 +4,35 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.markopavlenko.usermanagement.User;
-
 import java.awt.Component;
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.Properties;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import junit.extensions.jfcunit.JFCTestCase;
 import junit.extensions.jfcunit.JFCTestHelper;
+import junit.extensions.jfcunit.TestHelper;
+import junit.extensions.jfcunit.eventdata.JTableMouseEventData;
 import junit.extensions.jfcunit.eventdata.MouseEventData;
+import junit.extensions.jfcunit.eventdata.StringEventData;
+import junit.extensions.jfcunit.finder.DialogFinder;
 import junit.extensions.jfcunit.finder.NamedComponentFinder;
+
+import com.mockobjects.dynamic.Mock;
+
+import com.markopavlenko.usermanagement.User;
+import com.markopavlenko.usermanagement.db.DaoFactory;
+/**import com.markopavlenko.usermanagement.db.MockDaoFactory; **/
+import com.markopavlenko.usermanagement.util.Messages;
 
 public class MainFrameTest extends JFCTestCase {
 
