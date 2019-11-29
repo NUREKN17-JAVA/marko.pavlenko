@@ -8,6 +8,7 @@ import java.awt.Component;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import junit.extensions.jfcunit.JFCTestCase;
@@ -45,14 +46,14 @@ public class MainFrameTest extends JFCTestCase {
 	        return component;
 	    }
 	
-	  public void testBrowseControls() {
-		   find(JPanel.class, "browsePanel");
-		   find(JPanel.class, "UserTable");
-		   find(JPanel.class, "addButton");
-		   find(JPanel.class, "editButton");
-		   find(JPanel.class, "deleteButton");
-		   find(JPanel.class, "detailsButton");
-	  }
+	    public void testBrowseControls() {
+	        find(JPanel.class, "browsePanel");
+	        JTable table = (JTable) find(JTable.class, "userTable");    
+	        find(JButton.class, "addButton");
+	        find(JButton.class, "editButton");
+	        find(JButton.class, "deleteButton");
+	        find(JButton.class, "detailsButton");      
+	    }
 	  
 	  public void testAddUser() {
 		   JButton addButton = (JButton) find(JButton.class, "addButton");

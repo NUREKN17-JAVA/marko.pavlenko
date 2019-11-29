@@ -62,9 +62,9 @@ public class BrowsePanel extends JPanel implements ActionListener {
     private JButton getDetailsButton() {
         if (detailsButton == null) {
             detailsButton = new JButton();
-            detailsButton.setText("Детали");
-            detailsButton.setName("detailsButton"); 
-            detailsButton.setActionCommand("details");
+            detailsButton.setText("Детали"); //$NON-NLS-1$
+            detailsButton.setName("detailsButton"); //$NON-NLS-1$
+            detailsButton.setActionCommand("details"); //$NON-NLS-1$
             detailsButton.addActionListener(this);
         }
         return detailsButton;
@@ -73,9 +73,9 @@ public class BrowsePanel extends JPanel implements ActionListener {
     private JButton getDeleteButton() {
         if (deleteButton == null) {
             deleteButton = new JButton();
-            deleteButton.setText("Удалить"); 
-            deleteButton.setName("deleteButton"); 
-            deleteButton.setActionCommand("delete"); 
+            deleteButton.setText("Удалить"); //$NON-NLS-1$
+            deleteButton.setName("deleteButton"); //$NON-NLS-1$
+            deleteButton.setActionCommand("delete"); //$NON-NLS-1$
             deleteButton.addActionListener(this);
         }
         return deleteButton;
@@ -84,9 +84,9 @@ public class BrowsePanel extends JPanel implements ActionListener {
     private JButton getEditButton() {
         if (editButton == null) {
             editButton = new JButton();
-            editButton.setText("Редактировать"); 
-            editButton.setName("editButton");
-            editButton.setActionCommand("edit"); 
+            editButton.setText("Изменить"); //$NON-NLS-1$
+            editButton.setName("editButton"); //$NON-NLS-1$
+            editButton.setActionCommand("edit"); //$NON-NLS-1$
             editButton.addActionListener(this);
         }
         return editButton;

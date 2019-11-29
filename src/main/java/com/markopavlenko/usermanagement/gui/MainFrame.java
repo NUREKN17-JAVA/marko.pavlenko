@@ -13,14 +13,14 @@ private static final long serialVersionUID = 2668816163406000368L;
     private static final int FRAME_WIDTH = 800;
     private JPanel contentPanel;
     private JPanel browsePanel;
- 
+
+	private AddPanel addPanel;
 
     public MainFrame() {
         super();
         initialize();
     }
 
-    
     private void initialize() {
     	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	this.setSize(FRAME_WIDTH, FRAME_HEIGHT);
@@ -65,10 +65,10 @@ private static final long serialVersionUID = 2668816163406000368L;
         panel.repaint();
     }
 
-
-	private AddPanel getAddPanel() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+    private AddPanel getAddPanel() {
+        if (addPanel == null) {
+            addPanel = new AddPanel(this);
+        }
+        return addPanel;
+    }
 }
