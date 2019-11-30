@@ -11,9 +11,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import  com.markopavlenko.usermanagement.User;
-import  com.markopavlenko.usermanagement.db.DatabaseException;
-import  com.markopavlenko.usermanagement.util.Messages;
+import com.markopavlenko.usermanagement.User;
+import com.markopavlenko.usermanagement.db.DatabaseException;
+import com.markopavlenko.usermanagement.util.Messages;
 
 public class BrowsePanel extends JPanel implements ActionListener {
 
