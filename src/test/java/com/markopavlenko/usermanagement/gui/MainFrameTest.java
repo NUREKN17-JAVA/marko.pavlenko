@@ -8,7 +8,6 @@ import com.markopavlenko.usermanagement.util.Messages;
 import java.awt.Component;
 import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
