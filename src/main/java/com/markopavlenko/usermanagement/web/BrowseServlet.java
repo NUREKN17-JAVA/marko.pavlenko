@@ -16,7 +16,7 @@ import com.markopavlenko.usermanagement.db.DatabaseException;
 public class BrowseServlet extends HttpServlet {
     private static final long serialVersionUID = -8030261012558457487L;
 
-    @Override
+    
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (req.getParameter("add") != null) {
             add(req, resp);
@@ -31,6 +31,17 @@ public class BrowseServlet extends HttpServlet {
         }
     }
 
+    private void browse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Collection<User> users;
+        try {
+            users = DaoFactory.getInstance().getUserDao().findAll();
+            req.getSession().setAttribute("users", users);
+            req.getRequestDispatcher("/browse.jsp").forward(req, resp);
+        } catch (DatabaseException e) {
+            throw new ServletException(e);
+        }
+    }
+    
     private void details(HttpServletRequest req, HttpServletResponse resp) {
 		// TODO Auto-generated method stub
 		
@@ -46,19 +57,9 @@ public class BrowseServlet extends HttpServlet {
 		
 	}
 
-	private void add(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
-		
-	}
+	  private void add(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	        req.getRequestDispatcher("/add").forward(req, resp);
+	    }
 
-	private void browse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Collection<User> users;
-        try {
-            users = DaoFactory.getInstance().getUserDao().findAll();
-            req.getSession().setAttribute("users", users);
-            req.getRequestDispatcher("/browse.jsp").forward(req, resp);
-        } catch (DatabaseException e) {
-            throw new ServletException(e);
-        }
-    }
+	
 }
