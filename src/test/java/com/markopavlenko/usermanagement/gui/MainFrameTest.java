@@ -147,6 +147,7 @@ public class MainFrameTest extends JFCTestCase {
         table = (JTable) find(JTable.class,USER_TABLE_COMPONENT_NAME);
         assertEquals(NUMBER_OF_ROWS_ADD_TEST,table.getRowCount());
     }
+    
     public void testCancelAddUser() {
 
         User user = new User(FIRST_NAME,LAST_NAME,DATE_OF_BIRTH);

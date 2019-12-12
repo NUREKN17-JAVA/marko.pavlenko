@@ -7,7 +7,7 @@ import java.util.Map;
 
 import com.markopavlenko.usermanagement.User;
 
-public abstract class MockUserDao implements UserDao {
+public class MockUserDao implements UserDao {
 	private long id = 0;
 	private Map<Long, User> users = new HashMap<> ();
 	
@@ -42,5 +42,11 @@ public abstract class MockUserDao implements UserDao {
     public Collection<User> find(String firstName, String lastName) {
         throw new UnsupportedOperationException("Sorry, no implementation for you");
     }
+
+	@Override
+	public User find(long id) throws DatabaseException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
