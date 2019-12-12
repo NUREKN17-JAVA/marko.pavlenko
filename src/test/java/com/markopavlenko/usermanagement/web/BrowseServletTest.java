@@ -1,28 +1,16 @@
 package com.markopavlenko.usermanagement.web;
 
-import static org.junit.Assert.*;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-import org.junit.Before;
-import org.junit.Test;
+import com.markopavlenko.usermanagement.User;
 
-import com.mockrunner.mock.web.MockServletInputStream;
+public class BrowseServletTest extends MockServletTestCase {
 
-import  com.markopavlenko.usermanagement.User;
-import  com.markopavlenko.usermanagement.web.BrowseServlet;
-
-public class BrowseServletTest extends MockServletInputStream {
-
-	public BrowseServletTest(byte[] arg0) {
-		super(arg0);
-		// TODO Auto-generated constructor stub
-	}
-
-	public void setUp() throws Exception {
+    public void setUp() throws Exception {
         super.setUp();
         createServlet(BrowseServlet.class);
     }
@@ -48,4 +36,26 @@ public class BrowseServletTest extends MockServletInputStream {
         assertSame(expectedUser, returnedUser);
     }
 
+    public void testDelete() {
+        User user = new User(1000L, "John", "Doe", new Date());
+        getMockUserDao().expectAndReturn("find", 1000L, user);
+        addRequestParameter("id", String.valueOf(1000L));
+        addRequestParameter("delete", "Delete");
+        doPost();
+        User returnedUser = (User) getWebMockObjectFactory().getMockSession().getAttribute("user");
+        assertNotNull(returnedUser);
+        assertSame(user, returnedUser);
+    }
+
+    public void testDetails() {
+        User user = new User(1000L, "John", "Doe", new Date());
+        getMockUserDao().expectAndReturn("find", 1000L, user);
+        addRequestParameter("id", String.valueOf(1000L));
+        addRequestParameter("details", "Details");
+        doPost();
+        User returnedUser = (User) getWebMockObjectFactory().getMockSession().getAttribute("user");
+        assertNotNull(returnedUser);
+        assertSame(user, returnedUser);
+    }
 }
+

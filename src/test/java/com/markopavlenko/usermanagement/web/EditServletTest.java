@@ -3,12 +3,11 @@ package com.markopavlenko.usermanagement.web;
 import java.text.DateFormat;
 import java.util.Date;
 
-import com.markopavlenko.usermanagement.web.EditServlet;
-
 import com.markopavlenko.usermanagement.User;
 
 public class EditServletTest extends MockServletTestCase {
 
+    @Override
     public void setUp() throws Exception {
         super.setUp();
         createServlet(EditServlet.class);
