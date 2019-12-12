@@ -12,7 +12,9 @@ public class DeleteServletTest extends MockServletTestCase {
         createServlet(DeleteServlet.class);
 
     }
-
+    
+    //
+    
     public void testDelete() {
         User user = new User(new Long(1000), "John", "Doe", new Date());
         getMockUserDao().expect("delete", user);
