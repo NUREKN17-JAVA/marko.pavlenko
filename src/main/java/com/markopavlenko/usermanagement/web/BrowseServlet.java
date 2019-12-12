@@ -42,17 +42,29 @@ public class BrowseServlet extends HttpServlet {
         }
     }
     
+    private void edit(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException  {
+        if (req.getParameter("id") == null) {
+            req.setAttribute("error", "Select a user");
+            req.getRequestDispatcher("/browse.jsp").forward(req, resp);
+            return;
+        }
+        try {
+            User user = DaoFactory.getInstance().getUserDao().find(Long.valueOf(req.getParameter("id")));
+            req.getSession().setAttribute("user", user);
+        } catch (DatabaseException e) {
+            req.setAttribute("error", "Error in the database: " + e.getMessage());
+            req.getRequestDispatcher("/browse.jsp").forward(req, resp);
+            return;
+        }
+        req.getRequestDispatcher("/edit").forward(req, resp);
+    }
+    
     private void details(HttpServletRequest req, HttpServletResponse resp) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	private void delete(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void edit(HttpServletRequest req, HttpServletResponse resp) {
 		// TODO Auto-generated method stub
 		
 	}
