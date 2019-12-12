@@ -36,6 +36,9 @@ public class EditServlet extends HttpServlet {
     private void doCancel(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/browse").forward(req, resp);
     }
+    
+    //
+    //
 
     protected void doOk(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = null;
