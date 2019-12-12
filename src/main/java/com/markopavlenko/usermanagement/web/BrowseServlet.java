@@ -60,18 +60,18 @@ public class BrowseServlet extends HttpServlet {
     }
     
     private void details(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	private void delete(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
-	  private void add(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	        req.getRequestDispatcher("/add").forward(req, resp);
-	    }
+	private void add(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("/add").forward(req, resp);
+    }
 
 	
 }
