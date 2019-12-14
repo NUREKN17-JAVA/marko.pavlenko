@@ -1,6 +1,5 @@
 package com.markopavlenko.usermanagement.gui;
 
-
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
@@ -29,20 +28,14 @@ public class MainFrame extends JFrame {
         dao = DaoFactory.getInstance().getUserDao();
         initialize();
     }
-
     
-    public UserDao getDao() {
-        return dao;
-    }
-
-
     private void initialize() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         this.setTitle(Messages.getString("MainFrame.user_management")); //$NON-NLS-1$
         this.setContentPane(getContentPanel());
     }
-
+    
     private JPanel getContentPanel() {
         if (contentPanel == null) {
             contentPanel = new JPanel();
@@ -59,6 +52,10 @@ public class MainFrame extends JFrame {
         ((BrowsePanel) browsePanel).initTable();
         return browsePanel;
     }
+    
+    public UserDao getDao() {
+        return dao;
+    }  
 
     /**
      * @param args
