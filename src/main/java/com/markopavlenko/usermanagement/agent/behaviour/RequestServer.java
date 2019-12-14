@@ -32,10 +32,18 @@ public class RequestServer extends CyclicBehaviour {
         }
     }
 
-    private Collection<User> parseMessage(ACLMessage message) {
-       
-        return null;
-    }
+	 private Collection<User> parseMessage(ACLMessage message) {
+	        Collection<User> users = new ArrayList<>();
+	        String content = message.getContent();
+	        if (content != null) {
+	            StringTokenizer entryTokenizer = new StringTokenizer(content, ";");
+	            while (entryTokenizer.hasMoreTokens()) {
+	                StringTokenizer dataTokenizer = new StringTokenizer(entryTokenizer.nextToken(), ",");
+	                users.add(new User(new Long(dataTokenizer.nextToken()), dataTokenizer.nextToken(), dataTokenizer.nextToken()));
+	            }
+	        }
+	        return users;
+	    }
 
     private ACLMessage createReply(ACLMessage message) {
         ACLMessage reply = message.createReply();
