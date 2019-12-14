@@ -1,9 +1,11 @@
 package com.markopavlenko.usermanagement.agent;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.StringTokenizer;
 
 import jade.core.Agent;
-
+import jade.lang.acl.ACLMessage;
 
 import com.markopavlenko.usermanagement.User;
 import com.markopavlenko.usermanagement.agent.exception.SearchException;
@@ -39,7 +41,33 @@ public class SearchAgent extends Agent {
         }
     }
 
-    public void showUsers(Collection<User> users) {
-      //  gui.addUsers(users);
+    private ACLMessage createReply(ACLMessage message) {
+        ACLMessage reply = message.createReply();
+        String content = message.getContent();
+        StringTokenizer tokenizer = new StringTokenizer(content, ",");
+        if (tokenizer.countTokens() == 2) {
+            String firstName = tokenizer.nextToken();
+            String lastName = tokenizer.nextToken();
+            Collection<User> collection = null;
+            try {
+                collection = DaoFactory.getInstance().getUserDao().find(firstName, lastName);
+            } catch (DatabaseException e) {
+                e.printStackTrace();
+                collection = new ArrayList<>();
+            }
+            StringBuffer buffer = new StringBuffer();
+            for (User user : collection) {
+                buffer.append(user.getId()).append(",");
+                buffer.append(user.getFirstName()).append(",");
+                buffer.append(user.getLastName()).append(";");
+            }
+            reply.setContent(buffer.toString());
+        }
+        return reply;
     }
+
+	public void showUsers(Collection<User> users) {
+		// TODO Auto-generated method stub
+		
+	}
 }
