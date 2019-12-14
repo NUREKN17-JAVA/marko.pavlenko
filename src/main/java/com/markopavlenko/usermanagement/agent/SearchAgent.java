@@ -3,7 +3,6 @@ package com.markopavlenko.usermanagement.agent;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.StringTokenizer;
-
 import jade.core.AID;
 import jade.core.Agent;
 import jade.core.behaviours.TickerBehaviour;
@@ -12,27 +11,26 @@ import jade.domain.FIPAException;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
+import com.markopavlenko.usermanagement.agent.behaviour.SearchRequestBehaviour;
+import com.markopavlenko.usermanagement.agent.exception.SearchException;
+import com.markopavlenko.usermanagement.gui.SearchGui;
 
 import com.markopavlenko.usermanagement.agent.behaviour.RequestServer;
-
-
 import com.markopavlenko.usermanagement.User;
-import com.markopavlenko.usermanagement.agent.exception.SearchException;
 import com.markopavlenko.usermanagement.db.DaoFactory;
 import com.markopavlenko.usermanagement.db.DatabaseException;
 
 public class SearchAgent extends Agent {
 
-
     private AID[] aids = new AID[0];
 
-   // private SearchGui gui = null;
+    private SearchGui gui = null;
 
     @Override
     protected void setup() {
         super.setup();
- //       gui = new SearchGui(this);
- //       gui.setVisible(true);
+        gui = new SearchGui(this);
+        gui.setVisible(true);
         addBehaviour(new TickerBehaviour(this, 60000) {
             @Override
             protected void onTick() {
@@ -77,39 +75,25 @@ public class SearchAgent extends Agent {
         } catch (FIPAException e) {
             e.printStackTrace();
         }
-   //     gui.setVisible(false);
-   //     gui.dispose();
+        gui.setVisible(false);
+        gui.dispose();
         System.out.println("Agent " + getAID().getName() + " has finished working!");
     }
 
-
-    private ACLMessage createReply(ACLMessage message) {
-        ACLMessage reply = message.createReply();
-        String content = message.getContent();
-        StringTokenizer tokenizer = new StringTokenizer(content, ",");
-        if (tokenizer.countTokens() == 2) {
-            String firstName = tokenizer.nextToken();
-            String lastName = tokenizer.nextToken();
-            Collection<User> collection = null;
-            try {
-                collection = DaoFactory.getInstance().getUserDao().find(firstName, lastName);
-            } catch (DatabaseException e) {
-                e.printStackTrace();
-                collection = new ArrayList<>();
+    public void search(String firstName, String lastName) throws SearchException {
+        try {
+            Collection<User> users = DaoFactory.getInstance().getUserDao().find(firstName, lastName);
+            if (users.size() > 0) {
+                showUsers(users);
+            } else {
+                addBehaviour(new SearchRequestBehaviour(firstName, lastName, aids));
             }
-            StringBuffer buffer = new StringBuffer();
-            for (User user : collection) {
-                buffer.append(user.getId()).append(",");
-                buffer.append(user.getFirstName()).append(",");
-                buffer.append(user.getLastName()).append(";");
-            }
-            reply.setContent(buffer.toString());
+        } catch (DatabaseException e) {
+            throw new SearchException(e);
         }
-        return reply;
     }
 
-	public void showUsers(Collection<User> users) {
-		// TODO Auto-generated method stub
-		
-	}
+    public void showUsers(Collection<User> users) {
+        gui.addUsers(users);
+    }
 }
