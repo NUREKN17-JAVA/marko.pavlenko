@@ -12,13 +12,7 @@ import java.util.Collection;
 import java.util.StringTokenizer;
 
 public class RequestServer extends CyclicBehaviour {
-  
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	public void action() {
+    public void action() {
         ACLMessage message = myAgent.receive();
         if (message == null) {
             block();
@@ -32,18 +26,18 @@ public class RequestServer extends CyclicBehaviour {
         }
     }
 
-	 private Collection<User> parseMessage(ACLMessage message) {
-	        Collection<User> users = new ArrayList<>();
-	        String content = message.getContent();
-	        if (content != null) {
-	            StringTokenizer entryTokenizer = new StringTokenizer(content, ";");
-	            while (entryTokenizer.hasMoreTokens()) {
-	                StringTokenizer dataTokenizer = new StringTokenizer(entryTokenizer.nextToken(), ",");
-	                users.add(new User(new Long(dataTokenizer.nextToken()), dataTokenizer.nextToken(), dataTokenizer.nextToken()));
-	            }
-	        }
-	        return users;
-	    }
+    private Collection<User> parseMessage(ACLMessage message) {
+        Collection<User> users = new ArrayList<>();
+        String content = message.getContent();
+        if (content != null) {
+            StringTokenizer entryTokenizer = new StringTokenizer(content, ";");
+            while (entryTokenizer.hasMoreTokens()) {
+                StringTokenizer dataTokenizer = new StringTokenizer(entryTokenizer.nextToken(), ",");
+                users.add(new User(new Long(dataTokenizer.nextToken()), dataTokenizer.nextToken(), dataTokenizer.nextToken()));
+            }
+        }
+        return users;
+    }
 
     private ACLMessage createReply(ACLMessage message) {
         ACLMessage reply = message.createReply();

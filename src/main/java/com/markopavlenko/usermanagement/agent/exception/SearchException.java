@@ -1,11 +1,13 @@
 package com.markopavlenko.usermanagement.agent.exception;
 
-/**
- * This exception marks excetions, that are connected to the execution of a search agent
- */
 public class SearchException extends Exception {
 
-    public SearchException() {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public SearchException() {
     }
 
     public SearchException(String message) {

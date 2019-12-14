@@ -1,8 +1,8 @@
 package com.markopavlenko.usermanagement.agent;
 
-import java.util.ArrayList;
+
 import java.util.Collection;
-import java.util.StringTokenizer;
+
 import jade.core.AID;
 import jade.core.Agent;
 import jade.core.behaviours.TickerBehaviour;
@@ -10,7 +10,6 @@ import jade.domain.DFService;
 import jade.domain.FIPAException;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
-import jade.lang.acl.ACLMessage;
 import com.markopavlenko.usermanagement.agent.behaviour.SearchRequestBehaviour;
 import com.markopavlenko.usermanagement.agent.exception.SearchException;
 import com.markopavlenko.usermanagement.gui.SearchGui;
