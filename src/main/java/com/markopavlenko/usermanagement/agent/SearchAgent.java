@@ -3,15 +3,16 @@ package com.markopavlenko.usermanagement.agent;
 import java.util.Collection;
 
 import jade.core.Agent;
+
+
 import com.markopavlenko.usermanagement.User;
 import com.markopavlenko.usermanagement.agent.exception.SearchException;
 import com.markopavlenko.usermanagement.db.DaoFactory;
 import com.markopavlenko.usermanagement.db.DatabaseException;
 
 public class SearchAgent extends Agent {
-    /**
-	 * 
-	 */
+
+
 	private static final long serialVersionUID = 1L;
 
 	protected void setup() {
@@ -31,7 +32,7 @@ public class SearchAgent extends Agent {
             if (users.size() > 0) {
                 showUsers(users);
             } else {
-               
+            //    addBehaviour(new SearchRequestBehaviour(firstName, lastName, aids));
             }
         } catch (DatabaseException e) {
             throw new SearchException(e);
@@ -39,6 +40,6 @@ public class SearchAgent extends Agent {
     }
 
     public void showUsers(Collection<User> users) {
-        
+      //  gui.addUsers(users);
     }
 }
